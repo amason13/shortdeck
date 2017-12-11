@@ -1,32 +1,34 @@
-Deuces
+Treys
 ========
 
 A pure Python poker hand evaluation library
 
-    [ 2 ❤ ] , [ 2 ♠ ]
+    [ 3 ❤ ] , [ 3 ♠ ]
     
 ## Installation
 
 ```
-$ pip install git+https://github.com/ihendley/deuces
+$ pip install git+https://github.com/ihendley/treys
 ```
 
 ## Implementation notes
 
-This is a fork of https://github.com/worldveil/deuces that supports Python 3. Deuces was originally written by [Will Drevo](http://willdrevo.com/) for the MIT Pokerbots Competition. It is lightweight and fast. All lookups are done with bit arithmetic and dictionary lookups. That said, Deuces won't beat a C implemenation (~250k eval/s) but it is useful for situations where Python is required or where bots are allocated reasonable thinking time (human time scale).
+Treys is a fork of https://github.com/worldveil/deuces that supports Python 3. 
 
-Deuces handles 5, 6, and 7 card hand lookups. The 6 and 7 card lookups are done by combinatorially evaluating the 5 card choices.
+Treys (originally Deuces) was written by [Will Drevo](http://willdrevo.com/) for the MIT Pokerbots Competition. It is lightweight and fast. All lookups are done with bit arithmetic and dictionary lookups. That said, Treys won't beat a C implemenation (~250k eval/s) but it is useful for situations where Python is required or where bots are allocated reasonable thinking time (human time scale).
+
+Treys handles 5, 6, and 7 card hand lookups. The 6 and 7 card lookups are done by combinatorially evaluating the 5 card choices.
 
 ## Usage
 
-Deuces is easy to set up and use. 
+Treys is easy to set up and use. 
 
 ```python
->>> from deuces import Card
+>>> from treys import Card
 >>> card = Card.new('Qh')
 ```
 
-Card objects are represented as integers to keep Deuces performant and lightweight. 
+Card objects are represented as integers to keep Treys performant and lightweight. 
 
 Now let's create the board and an example Texas Hold'em hand:
 
@@ -51,7 +53,7 @@ If you have [`termacolor`](http://pypi.python.org/pypi/termcolor) installed, the
 
 Otherwise move straight to evaluating your hand strength:
 ```python
->>> from deuces import Evaluator
+>>> from treys import Evaluator
 >>> evaluator = Evaluator()
 >>> print evaluator.evaluate(board, hand)
 1600
@@ -59,9 +61,9 @@ Otherwise move straight to evaluating your hand strength:
 
 Hand strength is valued on a scale of 1 to 7462, where 1 is a Royal Flush and 7462 is unsuited 7-5-4-3-2, as there are only 7642 distinctly ranked hands in poker. Once again, refer to my blog post for a more mathematically complete explanation of why this is so. 
 
-If you want to deal out cards randomly from a deck, you can also do that with Deuces:
+If you want to deal out cards randomly from a deck, you can also do that with Treys:
 ```python
->>> from deuces import Deck
+>>> from treys import Deck
 >>> deck = Deck()
 >>> board = deck.draw(5)
 >>> player1_hand = deck.draw(2)
