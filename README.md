@@ -15,9 +15,7 @@ $ pip install deuces
 
 Deuces was originally written by [Will Drevo](http://willdrevo.com/) for the MIT Pokerbots Competition. It is lightweight and fast. All lookups are done with bit arithmetic and dictionary lookups. That said, Deuces won't beat a C implemenation (~250k eval/s) but it is useful for situations where Python is required or where bots are allocated reasonable thinking time (human time scale).
 
-Deuces handles 5, 6, and 7 card hand lookups. The 6 and 7 card lookups are done by combinatorially evaluating the 5 card choices, but later releases may have dedicated and faster algorithms for these. 
-
-I also have lookup tables for 2 card rollouts, which is particularly handy in evaluating Texas Hold'em preflop pot equity, but they are forthcoming as well.
+Deuces handles 5, 6, and 7 card hand lookups. The 6 and 7 card lookups are done by combinatorially evaluating the 5 card choices.
 
 ## Usage
 
