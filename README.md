@@ -8,7 +8,7 @@ A pure Python poker hand evaluation library
 ## Installation
 
 ```
-$ pip install git+https://github.com/ihendley/treys
+$ pip install treys
 ```
 
 ## Implementation notes
