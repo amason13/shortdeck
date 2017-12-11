@@ -13,14 +13,11 @@ $ pip install deuces
 
 ## Implementation notes
 
-Deuces, originally written for the MIT Pokerbots Competition, is lightweight and fast. All lookups are done with bit arithmetic and dictionary lookups. That said, Deuces won't beat a C implemenation (~250k eval/s) but it is useful for situations where Python is required or where bots are allocated reasonable thinking time (human time scale).
+Deuces was originally written by [Will Drevo](http://willdrevo.com/) for the MIT Pokerbots Competition. It is lightweight and fast. All lookups are done with bit arithmetic and dictionary lookups. That said, Deuces won't beat a C implemenation (~250k eval/s) but it is useful for situations where Python is required or where bots are allocated reasonable thinking time (human time scale).
 
 Deuces handles 5, 6, and 7 card hand lookups. The 6 and 7 card lookups are done by combinatorially evaluating the 5 card choices, but later releases may have dedicated and faster algorithms for these. 
 
-I also have lookup tables for 2 card rollouts, which is particularly handy in evaluating Texas Hold'em preflop pot equity, but they are forthcoming as well. 
-
-See my blog for an explanation of how the library works and how the lookup table generation is done:
-http://willdrevo.com/ (haven't posted yet)
+I also have lookup tables for 2 card rollouts, which is particularly handy in evaluating Texas Hold'em preflop pot equity, but they are forthcoming as well.
 
 ## Usage
 
@@ -117,37 +114,6 @@ or, coolest of all, get a blow-by-blow analysis of the stages of the game with r
 
     ========== HAND OVER ==========
     Player 2 is the winner with a Straight
-
-And that's Deuces, yo. 
-
-## Performance
-
-Just how fast is Deuces? Check out `performance` folder for a couple of tests comparing Deuces to other pure Python hand evaluators.
-
-Here are the results evaluating 10,000 random 5, 6, and 7 card boards:
-
-    5 card evaluation:
-    [*] Pokerhand-eval: Evaluations per second = 83.577580
-    [*] Deuces: Evaluations per second = 235722.458889
-    [*] SpecialK: Evaluations per second = 376833.177604
-
-    6 card evaluation:
-    [*] Pokerhand-eval: Evaluations per second = 55.519042
-    [*] Deuces: Evaluations per second = 45677.395466
-    [*] SpecialK: N/A
-
-    7 card evaluation:
-    [*] Pokerhand-eval: Evaluations per second = 51.529784
-    [*] Deuces: Evaluations per second = 15220.969303
-    [*] SpecialK: Evaluations per second = 142698.833384
-
-Compared to [`pokerhand-eval`](https://github.com/aliang/pokerhand-eval), Deuces is 2400x faster on 5 card evaluation, and drops to 300x faster on 7 card evaluation.
-
-However, [`SpecialKEval`](https://github.com/SpecialK/SpecialKEval/) reigns supreme, with an impressive nearly 400k evals / sec (a factor of ~1.7 improvement over Deuces) for 5 cards, and an impressive 140k /sec on 7 cards (factor of 10). 
-
-For poker hand evaluation in Python, if you desire a cleaner user interface and more readable and adaptable code, I recommend Deuces, because if you *really* need speed, you should be using C anyway. The extra 10x on 7 cards with SpecialK won't get you much more in terms of Monte Carlo simulations, and SpecialK's 5 card evals are within a factor of 2 of Deuces's evals/s. 
-
-For C/C++, I'd recommand [`pokerstove`](https://github.com/andrewprock/pokerstove), as its hyperoptimized C++ Boost routines can do 10+ million evals/s. 
 
 ## License
 
