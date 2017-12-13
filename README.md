@@ -13,7 +13,7 @@ $ pip install treys
 
 ## Implementation notes
 
-Treys is a fork of https://github.com/worldveil/deuces that supports Python 3. 
+Treys is a Python 3 port of [Deuces](https://github.com/worldveil/deuces). Most of work is taken from [msaindon'](https://github.com/msaindon/deuces) fork.
 
 Treys (originally Deuces) was written by [Will Drevo](http://willdrevo.com/) for the MIT Pokerbots Competition. It is lightweight and fast. All lookups are done with bit arithmetic and dictionary lookups. That said, Treys won't beat a C implemenation (~250k eval/s) but it is useful for situations where Python is required or where bots are allocated reasonable thinking time (human time scale).
 
