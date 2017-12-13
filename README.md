@@ -55,7 +55,7 @@ Otherwise move straight to evaluating your hand strength:
 ```python
 >>> from treys import Evaluator
 >>> evaluator = Evaluator()
->>> print evaluator.evaluate(board, hand)
+>>> print(evaluator.evaluate(board, hand))
 1600
 ```
 
@@ -87,10 +87,10 @@ Let's evaluate both hands strength, and then bin them into classes, one for each
 ```
 or get a human-friendly string to describe the score,
 
-    >>> print "Player 1 hand rank = %d (%s)\n" % (p1_score, evaluator.class_to_string(p1_class))
+    >>> print("Player 1 hand rank = %d (%s)\n" % (p1_score, evaluator.class_to_string(p1_class)))
     Player 1 hand rank = 6330 (High Card)
 
-    >>> print "Player 2 hand rank = %d (%s)\n" % (p2_score, evaluator.class_to_string(p2_class))
+    >>> print("Player 2 hand rank = %d (%s)\n" % (p2_score, evaluator.class_to_string(p2_class)))
     Player 2 hand rank = 1609 (Straight)
 
 or, coolest of all, get a blow-by-blow analysis of the stages of the game with relation to hand strength:
