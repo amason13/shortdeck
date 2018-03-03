@@ -142,7 +142,7 @@ class Evaluator(object):
 
         for i in range(len(stages)):
             line = "=" * line_length
-            print(f"{line} {stages[i]} {line}")
+            print("{} {} {}".format(line,stages[i],line))
             
             best_rank = 7463  # rank one worse than worst hand
             winners = []
@@ -153,7 +153,7 @@ class Evaluator(object):
                 rank_class = self.get_rank_class(rank)
                 class_string = self.class_to_string(rank_class)
                 percentage = 1.0 - self.get_five_card_rank_percentage(rank)  # higher better here
-                print(f"Player {player + 1} hand = {class_string}, percentage rank among all hands = {percentage}")
+                print("Player {} hand = {}, percentage rank among all hands = {}".format(player + 1, class_string, percentage))
 
                 # detect winner
                 if rank == best_rank:
@@ -166,16 +166,16 @@ class Evaluator(object):
             # if we're not on the river
             if i != stages.index("RIVER"):
                 if len(winners) == 1:
-                    print(f"Player {winners[0] + 1} hand is currently winning.\n")
+                    print("Player {} hand is currently winning.\n".format(winners[0] + 1))
                 else:
-                    print(f"Players {[x + 1 for x in winners]} are tied for the lead.\n")
+                    print("Players {} are tied for the lead.\n".format([x + 1 for x in winners]))
 
             # otherwise on all other streets
             else:
                 hand_result = self.class_to_string(self.get_rank_class(self.evaluate(hands[winners[0]], board)))
                 print()
-                print(f"{line} HAND OVER {line}")
+                print("{} HAND OVER {}".format(line, line))
                 if len(winners) == 1:
-                    print(f"Player {winners[0] + 1} is the winner with a {hand_result}\n")
+                    print("Player {} is the winner with a {}\n".format(winners[0] + 1, hand_result))
                 else:
-                    print(f"Players {winners} tied for the win with a {hand_result}\n")
+                    print("Players {} tied for the win with a {}\n".format(winners,hand_result))
