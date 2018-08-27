@@ -5,7 +5,7 @@ I added a few functions to treys in order to simulate open face chinese poker (O
 The main additions are a reshuffle() function, added to Deck. The reshuffle function allows you to shuffle the deck after cards have been drawn without resetting to the full deck. This is useful for monte carlo simulations of hand equities.
 Also added was a three card lookup tool. The three card lookup works by mapping a three card hand to the worst possible 5 card containing those three cards. It does this by generating two non-pairing, non-flushing, non-straightening kickers and adding them to make the 5 card hand. Warning! the mapping is many-to-one in a few cases. So if you are trying to compare two three card hands to determine the best, you will need a few extra lines of logic if the rank they return is the same. 
 
-That's all from me, the rest of this is treys as I found it...
+That's all from me, the rest of this is treys as I found it from `ihendley <https://github.com/ihendley/treys>`__ 
 
 =====
 
