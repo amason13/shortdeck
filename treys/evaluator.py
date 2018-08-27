@@ -19,6 +19,7 @@ class Evaluator(object):
         self.table = LookupTable()
         
         self.hand_size_map = {
+            3: self._three,
             5: self._five,
             6: self._six,
             7: self._seven
@@ -31,9 +32,56 @@ class Evaluator(object):
         Supports empty board, etc very flexible. No input validation 
         because that's cycles!
         """
-        all_cards = cards + board
+        all_cards = list(cards) + board
         return self.hand_size_map[len(all_cards)](all_cards)
+    
+    
+    
+    def generate_kickers(self,cards):
+        """
+        Generates two kickers which can be used to turn any 3 card hand into its worst possible 5 card hand.
+        Eg. [A A 5] generates [2s 3h] and [2 3 4] generates [5s 7h].
+        """
+        kickers = list(range(13))
+        for card in cards:
+            rank = Card.get_rank_int(card)
+            if rank in kickers:
+                kickers.remove(rank)
+        
+        for i in range(1,len(kickers)+1):
+            
+            s1 = str(Card.STR_RANKS[kickers[0]])+'s'
+            s2 = str(Card.STR_RANKS[kickers[i]])+'h'
+        
+            c1 = Card.new(str(s1))
+            c2 = Card.new(str(s2))
+            
+            cards2 = [cards[0],cards[1],cards[2],c1,c2]
+            
+            hr = self.evaluate(cards2,[])
+            
+            if self.get_rank_class(hr) != 5:
+                break
+        
+        return c1,c2
 
+    def _three(self,cards):
+        """
+        Turns three card hand into 5 card hand and performs 5 card evaluation.
+        Warning: the 3 card hand to 5 card hand mapping is not one-to-one, 
+        (eg. [2 3 5] and [2 3 4] both map to [2 3 4 5 7] unsuited)
+        so extra logic should be used when comparing two 3 card hands.
+        """
+        k1,k2 = self.generate_kickers(cards)
+        
+        cards.append(k1)
+        cards.append(k2)
+    
+        rank = self.evaluate(cards,[])
+            
+            
+        return rank    
+        
     def _five(self, cards):
         """
         Performs an evalution given cards in integer form, mapping them to
@@ -142,7 +190,7 @@ class Evaluator(object):
 
         for i in range(len(stages)):
             line = "=" * line_length
-            print("{} {} {}".format(line,stages[i],line))
+            print(f"{line} {stages[i]} {line}")
             
             best_rank = 7463  # rank one worse than worst hand
             winners = []
@@ -153,7 +201,7 @@ class Evaluator(object):
                 rank_class = self.get_rank_class(rank)
                 class_string = self.class_to_string(rank_class)
                 percentage = 1.0 - self.get_five_card_rank_percentage(rank)  # higher better here
-                print("Player {} hand = {}, percentage rank among all hands = {}".format(player + 1, class_string, percentage))
+                print(f"Player {player + 1} hand = {class_string}, percentage rank among all hands = {percentage}")
 
                 # detect winner
                 if rank == best_rank:
@@ -166,16 +214,16 @@ class Evaluator(object):
             # if we're not on the river
             if i != stages.index("RIVER"):
                 if len(winners) == 1:
-                    print("Player {} hand is currently winning.\n".format(winners[0] + 1))
+                    print(f"Player {winners[0] + 1} hand is currently winning.\n")
                 else:
-                    print("Players {} are tied for the lead.\n".format([x + 1 for x in winners]))
+                    print(f"Players {[x + 1 for x in winners]} are tied for the lead.\n")
 
             # otherwise on all other streets
             else:
                 hand_result = self.class_to_string(self.get_rank_class(self.evaluate(hands[winners[0]], board)))
                 print()
-                print("{} HAND OVER {}".format(line, line))
+                print(f"{line} HAND OVER {line}")
                 if len(winners) == 1:
-                    print("Player {} is the winner with a {}\n".format(winners[0] + 1, hand_result))
+                    print(f"Player {winners[0] + 1} is the winner with a {hand_result}\n")
                 else:
-                    print("Players {} tied for the win with a {}\n".format([x + 1 for x in winners],hand_result))
+                    print(f"Players {winners} tied for the win with a {hand_result}\n")
