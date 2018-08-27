@@ -9,23 +9,39 @@ class Deck:
     makes a copy of this object and shuffles it. 
     """
     _FULL_DECK = []
-
+    
     def __init__(self):
         self.shuffle()
-
+        self.dead_cards = []
+        
     def shuffle(self):
         # and then shuffle
         self.cards = Deck.GetFullDeck()
         rshuffle(self.cards)
+        self.dead_cards=[]
+        
+    def reshuffle(self):
+        self.cards = Deck.GetFullDeck()
+        for card in self.dead_cards:
+            self.cards.remove(card)
+        rshuffle(self.cards)
 
     def draw(self, n=1):
         if n == 1:
-            return self.cards.pop(0)
+            card = self.cards.pop(0)
+            self.dead_cards.append(card)
+            return card
 
         cards = []
         for i in range(n):
             cards.append(self.draw())
+
         return cards
+    
+        for card in cards:
+            self.dead_cards.append(card)
+                
+            
 
     def __str__(self):
         return Card.print_pretty_cards(self.cards)
@@ -41,3 +57,4 @@ class Deck:
                 Deck._FULL_DECK.append(Card.new(rank + suit))
 
         return list(Deck._FULL_DECK)
+
