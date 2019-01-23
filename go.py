@@ -62,8 +62,8 @@ p2_class = evaluator.get_rank_class(p2_score)
 # or get a human-friendly string to describe the score
 print("Player 1 hand rank = {} {evaluator.class_to_string(p1_class)}".format(p1_score))
 print("Player 2 hand rank = {} {evaluator.class_to_string(p2_class)}".format(p2_score))
-'''
 
 # or just a summary of the entire hand
 hands = [player1_hand, player2_hand]
 evaluator.hand_summary(board, hands)
+'''
