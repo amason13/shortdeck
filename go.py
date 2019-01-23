@@ -8,7 +8,8 @@ myhand.append(Card.new('7s'))
 myhand.append(Card.new('8h'))
 myhand.append(Card.new('9h'))
 
-print(Evaluator.evaluate(myhand))
+print(myhand)
+print(Evaluator.evaluate(myhand,[]))
 
 
 '''
