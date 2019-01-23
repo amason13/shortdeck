@@ -11,6 +11,26 @@ myhand.append(Card.new('9h'))
 print(myhand)
 print(evaluator.evaluate(myhand,[]))
 
+myhand = []
+myhand.append(Card.new('Ad'))
+myhand.append(Card.new('6c'))
+myhand.append(Card.new('7s'))
+myhand.append(Card.new('8h'))
+myhand.append(Card.new('9h'))
+
+print(myhand)
+print(evaluator.evaluate(myhand,[]))
+
+myhand = []
+myhand.append(Card.new('5c'))
+myhand.append(Card.new('6c'))
+myhand.append(Card.new('7s'))
+myhand.append(Card.new('8h'))
+myhand.append(Card.new('9h'))
+
+print(myhand)
+print(evaluator.evaluate(myhand,[]))
+
 
 '''
 # create a card
