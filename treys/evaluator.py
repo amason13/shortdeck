@@ -25,7 +25,7 @@ class Evaluator(object):
             7: self._seven
         }
 
-    def evaluate(self, cards, board):
+    def evaluate(self, cards, board, game_variant='FULL_DECK'):
         """
         This is the function that the user calls to get a hand rank. 
 
@@ -33,7 +33,19 @@ class Evaluator(object):
         because that's cycles!
         """
         all_cards = list(cards) + board
-        return self.hand_size_map[len(all_cards)](all_cards)
+        hand_rank = self.hand_size_map[len(all_cards)](all_cards)
+        
+        if game_variant == 'FULL_DECK':
+            pass
+        elif game_variant == 'SHORT_DECK':
+            # perform SD rank mapping and replace hand_rank
+        elif game_variant == 'TRITON':
+            # PERFORM TRITON rank mapping and replace hand_rank
+        else: 
+            print('Game variant error')
+            
+        return hand_rank
+        
     
     
     
