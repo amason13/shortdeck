@@ -1,6 +1,6 @@
 from treys import Card, Evaluator, Deck
 
-
+evaluator = Evaluator
 myhand = []
 myhand.append(Card.new('Ac'))
 myhand.append(Card.new('6c'))
@@ -9,7 +9,7 @@ myhand.append(Card.new('8h'))
 myhand.append(Card.new('9h'))
 
 print(myhand)
-print(Evaluator.evaluate([268471337, 1082379, 2102541, 4204049, 8398611],[]))
+print(evaluator.evaluate(myhand,[]))
 
 
 '''
