@@ -1,6 +1,6 @@
 from treys import Card, Evaluator, Deck
 
-evaluator = Evaluator
+evaluator = Evaluator()
 myhand = []
 myhand.append(Card.new('Ac'))
 myhand.append(Card.new('6c'))
