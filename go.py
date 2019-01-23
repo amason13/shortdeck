@@ -53,7 +53,7 @@ myhand.append(Card.new('As'))
 myhand.append(Card.new('Kh'))
 myhand.append(Card.new('Ks'))
 
-print('Rank for 22233 is: ', evaluator.evaluate(myhand,[]))
+print('Rank for AAAKK is: ', evaluator.evaluate(myhand,[]))
 
 
 
