@@ -8,18 +8,7 @@ myhand.append(Card.new('7s'))
 myhand.append(Card.new('8h'))
 myhand.append(Card.new('9h'))
 
-print(myhand)
-print(evaluator.evaluate(myhand,[]))
-
-myhand = []
-myhand.append(Card.new('Ad'))
-myhand.append(Card.new('6c'))
-myhand.append(Card.new('7s'))
-myhand.append(Card.new('8h'))
-myhand.append(Card.new('9h'))
-
-print(myhand)
-print(evaluator.evaluate(myhand,[]))
+print('Rank for A6789 is: ', evaluator.evaluate(myhand,[]))
 
 myhand = []
 myhand.append(Card.new('5c'))
@@ -28,8 +17,44 @@ myhand.append(Card.new('7s'))
 myhand.append(Card.new('8h'))
 myhand.append(Card.new('9h'))
 
-print(myhand)
-print(evaluator.evaluate(myhand,[]))
+print('Rank for 56789 is: ', evaluator.evaluate(myhand,[]))
+
+myhand = []
+myhand.append(Card.new('2c'))
+myhand.append(Card.new('3c'))
+myhand.append(Card.new('4c'))
+myhand.append(Card.new('5c'))
+myhand.append(Card.new('7c'))
+
+print('Rank for 23457 flush is: ', evaluator.evaluate(myhand,[]))
+
+myhand = []
+myhand.append(Card.new('Ac'))
+myhand.append(Card.new('Kc'))
+myhand.append(Card.new('Qc'))
+myhand.append(Card.new('Jc'))
+myhand.append(Card.new('9c'))
+
+print('Rank for AKQJ9 flush is: ', evaluator.evaluate(myhand,[]))
+
+myhand = []
+myhand.append(Card.new('2c'))
+myhand.append(Card.new('2d'))
+myhand.append(Card.new('2s'))
+myhand.append(Card.new('3h'))
+myhand.append(Card.new('3s'))
+
+print('Rank for 22233 is: ', evaluator.evaluate(myhand,[]))
+
+myhand = []
+myhand.append(Card.new('Ac'))
+myhand.append(Card.new('Ad'))
+myhand.append(Card.new('As'))
+myhand.append(Card.new('Kh'))
+myhand.append(Card.new('Ks'))
+
+print('Rank for 22233 is: ', evaluator.evaluate(myhand,[]))
+
 
 
 '''
