@@ -18,7 +18,34 @@ class Evaluator(object):
         
         self.table = LookupTable()
         
-
+    def SHORTmap(self,hr):
+        if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
+            hr = 6
+        # swap full houses and flushes around
+        elif (167 <= hr) & (hr <= 322): 
+            hr -= 156
+        elif (323 <= hr) & (hr <= 1599):
+            hr += 1277
+        # swap straights and trips around.
+        elif (1600 <= hr) & (hr <= 1609):
+            hr -= 10
+        elif (1610 <= hr) & (hr <= 2467):
+            hr += 867            
+        else:
+            pass
+        return hr
+    
+    def TRITONmap(self,hr):
+        if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
+            hr = 6
+        # swap full houses and flushes around
+        elif (167 <= hr) & (hr <= 322): 
+            hr -= 156
+        elif (323 <= hr) & (hr <= 1599):
+            hr += 1277
+        else:
+            pass
+        return hr
 
     def evaluate(self, cards, board, game_variant='FULL_DECK'):
         """
@@ -34,8 +61,10 @@ class Evaluator(object):
             pass
         elif game_variant == 'SHORT_DECK':
             # perform SD rank mapping and replace hand_rank
+            self.SHORTmap(hand_rank)
         elif game_variant == 'TRITON':
             # PERFORM TRITON rank mapping and replace hand_rank
+            self.TRITONmap(hand_rank)            
         else: 
             print('Game variant error')
             
