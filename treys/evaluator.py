@@ -15,15 +15,10 @@ class Evaluator(object):
     """
 
     def __init__(self):
-
+        
         self.table = LookupTable()
         
-        self.hand_size_map = {
-            3: self._three,
-            5: self._five,
-            6: self._six,
-            7: self._seven
-        }
+
 
     def evaluate(self, cards, board, game_variant='FULL_DECK'):
         """
@@ -33,7 +28,7 @@ class Evaluator(object):
         because that's cycles!
         """
         all_cards = list(cards) + board
-        hand_rank = self.hand_size_map[len(all_cards)](all_cards)
+        hand_rank = self._five(all_cards)
         
         if game_variant == 'FULL_DECK':
             pass
@@ -46,53 +41,6 @@ class Evaluator(object):
             
         return hand_rank
         
-    
-    
-    
-    def generate_kickers(self,cards):
-        """
-        Generates two kickers which can be used to turn any 3 card hand into its worst possible 5 card hand.
-        Eg. [A A 5] generates [2s 3h] and [2 3 4] generates [5s 7h].
-        """
-        kickers = list(range(13))
-        for card in cards:
-            rank = Card.get_rank_int(card)
-            if rank in kickers:
-                kickers.remove(rank)
-        
-        for i in range(1,len(kickers)+1):
-            
-            s1 = str(Card.STR_RANKS[kickers[0]])+'s'
-            s2 = str(Card.STR_RANKS[kickers[i]])+'h'
-        
-            c1 = Card.new(str(s1))
-            c2 = Card.new(str(s2))
-            
-            cards2 = [cards[0],cards[1],cards[2],c1,c2]
-            
-            hr = self.evaluate(cards2,[])
-            
-            if self.get_rank_class(hr) != 5:
-                break
-        
-        return c1,c2
-
-    def _three(self,cards):
-        """
-        Turns three card hand into 5 card hand and performs 5 card evaluation.
-        Warning: the 3 card hand to 5 card hand mapping is not one-to-one, 
-        (eg. [2 3 5] and [2 3 4] both map to [2 3 4 5 7] unsuited)
-        so extra logic should be used when comparing two 3 card hands.
-        """
-        k1,k2 = self.generate_kickers(cards)
-        
-        cards.append(k1)
-        cards.append(k2)
-    
-        rank = self.evaluate(cards,[])
-            
-            
-        return rank    
         
     def _five(self, cards):
         """
@@ -113,40 +61,7 @@ class Evaluator(object):
             prime = Card.prime_product_from_hand(cards)
             return self.table.unsuited_lookup[prime]
 
-    def _six(self, cards):
-        """
-        Performs five_card_eval() on all (6 choose 5) = 6 subsets
-        of 5 cards in the set of 6 to determine the best ranking, 
-        and returns this ranking.
-        """
-        minimum = LookupTable.MAX_HIGH_CARD
-
-        all5cardcombobs = itertools.combinations(cards, 5)
-        for combo in all5cardcombobs:
-
-            score = self._five(combo)
-            if score < minimum:
-                minimum = score
-
-        return minimum
-
-    def _seven(self, cards):
-        """
-        Performs five_card_eval() on all (7 choose 5) = 21 subsets
-        of 5 cards in the set of 7 to determine the best ranking, 
-        and returns this ranking.
-        """
-        minimum = LookupTable.MAX_HIGH_CARD
-
-        all5cardcombobs = itertools.combinations(cards, 5)
-        for combo in all5cardcombobs:
-            
-            score = self._five(combo)
-            if score < minimum:
-                minimum = score
-
-        return minimum
-
+    
     def get_rank_class(self, hr):
         """
         Returns the class of hand given the hand hand_rank
