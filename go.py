@@ -1,5 +1,9 @@
 from shortdeck import Card, Evaluator, Deck
 
+FD = Evaluator()
+SD = Evaluator(game_variant='SHORT_DECK')
+TR = Evaluator(game_variant='TRITON')
+
 myhand = []
 myhand.append(Card.new('Ac'))
 myhand.append(Card.new('6c'))
@@ -9,7 +13,7 @@ ophand.append(Card.new('Kh'))
 ophand.append(Card.new('Kd'))
 
 b=[]
-'''
+
 print('******full deck******')
 print(FD.equities(myhand,ophand,b))
 
@@ -18,26 +22,5 @@ print(SD.equities(myhand,ophand,b))
 
 print('******triton******')
 print(TR.equities(myhand,ophand,b))
-'''
-test_hand = []
 
-test_hand.append(Card.new('5c'))
-test_hand.append(Card.new('6h'))
-test_hand.append(Card.new('7c'))
-test_hand.append(Card.new('8c'))
-test_hand.append(Card.new('9c'))
 
-FD = Evaluator()
-print(FD.game_variant)
-print(FD.evaluate(test_hand,[]))
-
-test_hand.pop(0)
-test_hand.append(Card.new('Ac'))
-
-SD = Evaluator(game_variant='SHORT_DECK')
-print(SD.game_variant)
-print(SD.evaluate(test_hand,[]))
-
-TR = Evaluator(game_variant='TRITON')
-print(TR.game_variant)
-print(TR.evaluate(test_hand,[]))
