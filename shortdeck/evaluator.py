@@ -26,34 +26,34 @@ class Evaluator(object):
         }
 
         
-    def SHORTmap(self,hr):
+    def SHORTmap(hr):
         if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
-            hr = 6
+            HR = 6
         # swap full houses and flushes around
         elif (167 <= hr) and (hr <= 322): 
-            hr -= 156
+            HR = hr + 1277
         elif (323 <= hr) and (hr <= 1599):
-            hr += 1277
+            HR = hr - 156
         # swap straights and trips around.
         elif (1600 <= hr) and (hr <= 1609):
-            hr -= 10
+            HR = hr + 858
         elif (1610 <= hr) and (hr <= 2467):
-            hr += 867            
+            HR = hr - 10            
         else:
-            pass
-        return hr
-    
-    def TRITONmap(self,hr):
+            HR = hr
+        return HR
+
+    def TRITONmap(hr):
         if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
-            hr = 6
+            HR = 6
         # swap full houses and flushes around
         elif (167 <= hr) and (hr <= 322): 
-            hr -= 156
+            HR = hr + 1277
         elif (323 <= hr) and (hr <= 1599):
-            hr += 1277
+            HR = hr - 156
         else:
-            pass
-        return hr
+            HR = hr
+        return HR
 
     def evaluate(self, cards, board):
         """
