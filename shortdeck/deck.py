@@ -9,14 +9,19 @@ class Deck:
     makes a copy of this object and shuffles it. 
     """
     _FULL_DECK = []
+    _SHORT_DECK = []
     
-    def __init__(self):
+    def __init__(self, variant = 'FULL_DECK'):
         self.shuffle()
         self.dead_cards = []
+        self.variant = variant
         
     def shuffle(self):
         # and then shuffle
-        self.cards = Deck.GetFullDeck()
+        if self.variant == 'FULL_DECK':
+            self.cards = Deck.GetFullDeck()
+        else: 
+            self.cards = Deck.GetShortDeck()
         rshuffle(self.cards)
         self.dead_cards=[]
         
@@ -55,4 +60,16 @@ class Deck:
                 Deck._FULL_DECK.append(Card.new(rank + suit))
 
         return list(Deck._FULL_DECK)
+    
+    @staticmethod
+    def GetShortDeck():
+        if Deck._SHORT_DECK:
+            return list(Deck._SHORT_DECK)
+
+        # create the standard 36 card short deck
+        for rank in Card.STR_RANKS[4:]:
+            for suit, val in Card.CHAR_SUIT_TO_INT_SUIT.items():
+                Deck._SHORT_DECK.append(Card.new(rank + suit))
+
+        return list(Deck._SHORT_DECK)
 
