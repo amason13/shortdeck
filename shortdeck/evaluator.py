@@ -69,10 +69,10 @@ class Evaluator(object):
             pass
         elif self.game_variant == 'SHORT_DECK':
             # perform SD rank mapping and replace hand_rank
-            self.SHORTmap(hand_rank)
+            hand_rank = self.SHORTmap(hand_rank)
         elif self.game_variant == 'TRITON':
             # PERFORM TRITON rank mapping and replace hand_rank
-            self.TRITONmap(hand_rank)            
+            hand_rank = self.TRITONmap(hand_rank)            
         else: 
             print('Game variant error')
             
