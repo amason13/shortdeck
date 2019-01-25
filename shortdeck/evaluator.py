@@ -132,6 +132,32 @@ class Evaluator(object):
 
         return minimum
     
+    def get_rank_class(self, hr):
+        """
+        Returns the class of hand given the hand hand_rank
+        returned from evaluate. 
+        """
+        if hr >= 0 and hr <= LookupTable.MAX_STRAIGHT_FLUSH:
+            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_STRAIGHT_FLUSH]
+        elif hr <= LookupTable.MAX_FOUR_OF_A_KIND:
+            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_FOUR_OF_A_KIND]
+        elif hr <= LookupTable.MAX_FULL_HOUSE:
+            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_FULL_HOUSE]
+        elif hr <= LookupTable.MAX_FLUSH:
+            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_FLUSH]
+        elif hr <= LookupTable.MAX_STRAIGHT:
+            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_STRAIGHT]
+        elif hr <= LookupTable.MAX_THREE_OF_A_KIND:
+            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_THREE_OF_A_KIND]
+        elif hr <= LookupTable.MAX_TWO_PAIR:
+            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_TWO_PAIR]
+        elif hr <= LookupTable.MAX_PAIR:
+            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_PAIR]
+        elif hr <= LookupTable.MAX_HIGH_CARD:
+            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_HIGH_CARD]
+        else:
+            raise Exception("Inavlid hand rank, cannot return rank class")
+            
     def equities(self, hero_cards, villain_cards, board, num_iters = 100000):
         all_cards = hero_cards + villain_cards + board
         hero = 0
