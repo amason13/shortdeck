@@ -75,5 +75,5 @@ b.append(Card.new('7d'))
 b.append(Card.new('Tc'))
 
 
-print(SD.equities(p1,p2,b))
-print(TR.equities(p1,p2,b))
+print(SD.equities(p2,p1,b))
+#print(TR.equities(p1,p2,b))
