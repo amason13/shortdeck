@@ -2,7 +2,6 @@ import itertools
 from .card import Card
 from .deck import Deck
 from .lookup import LookupTable
-from copy import deepcopy 
 
 class Evaluator(object):
     """
@@ -133,7 +132,7 @@ class Evaluator(object):
 
         return minimum
     
-    def equities(self, hero_cards, villain_cards, board, num_iters = 10):
+    def equities(self, hero_cards, villain_cards, board, num_iters = 10000):
         all_cards = hero_cards + villain_cards + board
         hero = 0
         ties = 0
@@ -141,8 +140,9 @@ class Evaluator(object):
             deck = Deck(variant = self.game_variant)
             deck.remove(all_cards)
             deck.reshuffle()
+            
             full_board = board + deck.draw(5-len(board))
-            print(Card.print_pretty_cards(full_board))
+            
             hero_rank = self.evaluate(hero_cards,full_board)
             villain_rank = self.evaluate(villain_cards,full_board)
 
