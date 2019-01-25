@@ -4,25 +4,44 @@ FD = Evaluator()
 SD = Evaluator(game_variant='SHORT_DECK')
 TR = Evaluator(game_variant='TRITON')
 
-myhand = []
-myhand.append(Card.new('Ac'))
-myhand.append(Card.new('6c'))
+h1 = []
+h1.append(Card.new('Ac'))
+h1.append(Card.new('6c'))
 
-ophand = []
-ophand.append(Card.new('Kh'))
-ophand.append(Card.new('Kd'))
+h2 = []
+h2.append(Card.new('Kh'))
+h2.append(Card.new('Kd'))
 
-b=[]
+h3 = []
+h3.append(Card.new('8h'))
+h3.append(Card.new('9h'))
+
+h4 = []
+h4.append(Card.new('2h'))
+h4.append(Card.new('2d'))
+
+print(FD.equities(h1,h2,[]))
+print(FD.equities(h1,h3,[]))
+print(FD.equities(h1,h4,[]))
+print(FD.equities(h2,h3,[]))
+print(FD.equities(h2,h4,[]))
+print(FD.equities(h3,h4,[]))
+
+
+
+
+
+
 '''
 print('******full deck******')
-print(FD.equities(myhand,ophand,b))
+print(FD.equities(myhand,ophand,[]))
 
 print('******short deck******')
-print(SD.equities(myhand,ophand,b))
+print(SD.equities(myhand,ophand,[]))
 
 print('******triton******')
-print(TR.equities(myhand,ophand,b))
-'''
+print(TR.equities(myhand,ophand,[]))
+
 
 boat = []
 boat.append(Card.new('Ac'))
@@ -46,3 +65,4 @@ print(SD.evaluate(flush,[]))
 
 print(TR.evaluate(boat,[]))
 print(TR.evaluate(flush,[]))
+'''
