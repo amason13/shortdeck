@@ -6,11 +6,11 @@ TR = Evaluator(game_variant='TRITON')
 
 myhand = []
 myhand.append(Card.new('Ac'))
-myhand.append(Card.new('Kc'))
+myhand.append(Card.new('6c'))
 
 ophand = []
-ophand.append(Card.new('Jh'))
-ophand.append(Card.new('Th'))
+ophand.append(Card.new('Kh'))
+ophand.append(Card.new('Kd'))
 
 b=[]
 
