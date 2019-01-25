@@ -23,23 +23,20 @@ class Deck:
         else: 
             self.cards = Deck.GetShortDeck()
         rshuffle(self.cards)
-        self.dead_cards=[]
         
     def reshuffle(self):
         rshuffle(self.cards)
 
-    def draw(self, n=1):
+    def draw(self, n=1):            
         cards = []
         for i in range(n):
-            cards.append(self.draw())
+            cards.append(self.cards.pop(0))
         return cards
-        for card in cards:
-            self.dead_cards.append(card)
+  
                 
     def remove(self, my_cards):
         for c in my_cards:
             self.cards.remove(c)
-            self.dead_cards.append(c)
 
     def __str__(self):
         return Card.print_pretty_cards(self.cards)
