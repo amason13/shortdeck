@@ -73,7 +73,6 @@ p2.append(Card.new('Jh'))
 b.append(Card.new('8d'))
 b.append(Card.new('7d'))
 b.append(Card.new('Tc'))
-b.append(Card.new('Qs'))
 
 
 print(SD.equities(p1,p2,b))
