@@ -79,7 +79,7 @@ class Evaluator(object):
             hand_rank = self.TRITONmap(hand_rank)            
         else: 
             print('Game variant error')
-        print(hand_rank)    
+        #print(hand_rank)    
         return hand_rank
         
         
