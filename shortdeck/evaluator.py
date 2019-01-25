@@ -68,7 +68,7 @@ class Evaluator(object):
         """
         all_cards = list(cards) + board
         hand_rank = self.hand_size_map[len(all_cards)](all_cards)
-        
+        print(self.game_variant, hand_rank)
         if self.game_variant == 'FULL_DECK':
             pass
         elif self.game_variant == 'SHORT_DECK':
@@ -79,7 +79,7 @@ class Evaluator(object):
             hand_rank = self.TRITONmap(hand_rank)            
         else: 
             print('Game variant error')
-            
+        print(hand_rank)    
         return hand_rank
         
         
