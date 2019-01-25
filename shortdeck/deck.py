@@ -12,9 +12,9 @@ class Deck:
     _SHORT_DECK = []
     
     def __init__(self, variant = 'FULL_DECK'):
+        self.variant = variant
         self.shuffle()
         self.dead_cards = []
-        self.variant = variant
         
     def shuffle(self):
         # and then shuffle
