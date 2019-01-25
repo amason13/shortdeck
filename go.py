@@ -3,7 +3,7 @@ from shortdeck import Card, Evaluator, Deck
 FD = Evaluator()
 SD = Evaluator(game_variant='SHORT_DECK')
 TR = Evaluator(game_variant='TRITON')
-
+'''
 h1 = []
 h1.append(Card.new('Ac'))
 h1.append(Card.new('6c'))
@@ -26,12 +26,7 @@ print(FD.equities(h1,h4,[]))
 print(FD.equities(h2,h3,[]))
 print(FD.equities(h2,h4,[]))
 print(FD.equities(h3,h4,[]))
-
-
-
-
-
-
+'''
 '''
 print('******full deck******')
 print(FD.equities(myhand,ophand,[]))
@@ -41,7 +36,6 @@ print(SD.equities(myhand,ophand,[]))
 
 print('******triton******')
 print(TR.equities(myhand,ophand,[]))
-
 
 boat = []
 boat.append(Card.new('Ac'))
@@ -66,3 +60,21 @@ print(SD.evaluate(flush,[]))
 print(TR.evaluate(boat,[]))
 print(TR.evaluate(flush,[]))
 '''
+p1 = []
+p2 = []
+b = []
+
+p1.append(Card.new('8c'))
+p1.append(Card.new('8h'))
+
+p2.append(Card.new('9c'))
+p2.append(Card.new('Jh'))
+
+b.append(Card.new('8d'))
+b.append(Card.new('7d'))
+b.append(Card.new('Tc'))
+b.append(Card.new('Qs'))
+
+
+print(SD.evaluate(p1,p2,b))
+print(TD.evaluate(p1,p2,b))
