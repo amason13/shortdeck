@@ -37,6 +37,7 @@ class Deck:
             self.dead_cards.append(card)
                 
     def remove(self, my_cards):
+        print(my_cards)
         for c in my_cards:
             self.cards.remove(c)
             self.dead_cards.append(c)
