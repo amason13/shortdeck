@@ -30,14 +30,14 @@ class Evaluator(object):
         if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
             hr = 6
         # swap full houses and flushes around
-        elif (167 <= hr) & (hr <= 322): 
+        elif (167 <= hr) and (hr <= 322): 
             hr -= 156
-        elif (323 <= hr) & (hr <= 1599):
+        elif (323 <= hr) and (hr <= 1599):
             hr += 1277
         # swap straights and trips around.
-        elif (1600 <= hr) & (hr <= 1609):
+        elif (1600 <= hr) and (hr <= 1609):
             hr -= 10
-        elif (1610 <= hr) & (hr <= 2467):
+        elif (1610 <= hr) and (hr <= 2467):
             hr += 867            
         else:
             pass
@@ -47,9 +47,9 @@ class Evaluator(object):
         if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
             hr = 6
         # swap full houses and flushes around
-        elif (167 <= hr) & (hr <= 322): 
+        elif (167 <= hr) and (hr <= 322): 
             hr -= 156
-        elif (323 <= hr) & (hr <= 1599):
+        elif (323 <= hr) and (hr <= 1599):
             hr += 1277
         else:
             pass
