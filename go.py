@@ -1,6 +1,9 @@
 from treys import Card, Evaluator, Deck
 
-evaluator = Evaluator()
+FD = Evaluator()
+SD = Evaluator(game_variant='SHORT_DECK')
+TR = Evaluator(game_variant='TRITON')
+
 myhand = []
 myhand.append(Card.new('Ac'))
 myhand.append(Card.new('Kc'))
@@ -9,9 +12,9 @@ ophand = []
 ophand.append(Card.new('Jh'))
 ophand.append(Card.new('Th'))
 
-evaluator.evaluate(myhand,ophand)
+FD.evaluate(myhand,ophand)
 
-evaluator.evaluate(myhand,ophand,game_variant = SHORT_DECK)
+SD.evaluate(myhand,ophand)
 
-evaluator.evaluate(myhand,ophand,game_variant = TRITON)
+TR.evaluate(myhand,ophand)
 
