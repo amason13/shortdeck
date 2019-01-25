@@ -70,7 +70,7 @@ p1.append(Card.new('8h'))
 p2.append(Card.new('9d'))
 p2.append(Card.new('Jh'))
 
-b.append(Card.new('8d'))
+b.append(Card.new('8h'))
 b.append(Card.new('7d'))
 b.append(Card.new('Tc'))
 
