@@ -76,5 +76,5 @@ b.append(Card.new('Tc'))
 b.append(Card.new('Qs'))
 
 
-print(SD.evaluate(p1,p2,b))
-print(TD.evaluate(p1,p2,b))
+print(SD.equities(p1,p2,b))
+print(TD.equities(p1,p2,b))
