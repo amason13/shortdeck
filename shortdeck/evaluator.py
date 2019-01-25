@@ -165,6 +165,7 @@ class Evaluator(object):
     def equities(self, hero_cards, villain_cards, board, num_iters = 1000):
         all_cards = hero_cards + villain_cards + board
         hero = 0
+        vill = 0
         ties = 0
         for i in range(num_iters):
             deck = Deck(variant = self.game_variant)
@@ -175,14 +176,17 @@ class Evaluator(object):
             
             hero_rank = self.evaluate(hero_cards,full_board)
             villain_rank = self.evaluate(villain_cards,full_board)
-
+  
             if hero_rank == villain_rank:
                 ties+=1
 
-            if hero_rank<villain_rank:
+            elif hero_rank<villain_rank:
                 hero+=1
                 
-        return (hero/num_iters, ties/num_iters, (num_iters-hero-ties)/num_iters)          
+            elif villain_rank<hero_rank 
+                vill+=1
+                
+        return (hero/num_iters, ties/num_iters, vill/num_iters)          
         
     
 
