@@ -1,9 +1,5 @@
 from shortdeck import Card, Evaluator, Deck
 
-FD = Evaluator()
-SD = Evaluator(game_variant='SHORT_DECK')
-TR = Evaluator(game_variant='TRITON')
-
 myhand = []
 myhand.append(Card.new('Ac'))
 myhand.append(Card.new('6c'))
@@ -31,6 +27,14 @@ test_hand.append(Card.new('7c'))
 test_hand.append(Card.new('8c'))
 test_hand.append(Card.new('9c'))
 
+FD = Evaluator()
+print(FD.game_variant)
 print(FD.evaluate(test_hand,[]))
+
+SD = Evaluator(game_variant='SHORT_DECK')
+print(SD.game_variant)
 print(SD.evaluate(test_hand,[]))
+
+TR = Evaluator(game_variant='TRITON')
+print(TR.game_variant)
 print(TR.evaluate(test_hand,[]))
