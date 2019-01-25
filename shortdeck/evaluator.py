@@ -137,19 +137,22 @@ class Evaluator(object):
         all_cards = hero_cards + villain_cards + board
         hero = 0
         ties = 0
-        for i in range(num_iters):
-            deck = Deck()
-            deck.remove(all_cards)
-            deck.reshuffle()
-            full_board = board + deck.draw(5-len(board))
-            print(Card.print_pretty_cards(full_board))
-            hero_rank = self.evaluate(hero_cards,full_board)
-            villain_rank = self.evaluate(villain_cards,full_board)
+        if self.game_variant == 'FULL_DECK':
+            for i in range(num_iters):
+                deck = Deck(variant = self.game_variant)
+                deck.remove(all_cards)
+                deck.reshuffle()
+                full_board = board + deck.draw(5-len(board))
+                print(Card.print_pretty_cards(full_board))
+                hero_rank = self.evaluate(hero_cards,full_board)
+                villain_rank = self.evaluate(villain_cards,full_board)
+
+                if hero_rank == villain_rank:
+                    ties+=1
+                if hero_rank<villain_rank:
+                    hero+=1
+        else:
             
-            if hero_rank == villain_rank:
-                ties+=1
-            if hero_rank<villain_rank:
-                hero+=1
                 
         return (hero/num_iters, ties/num_iters, (num_iters-hero-ties)/num_iters)          
         
