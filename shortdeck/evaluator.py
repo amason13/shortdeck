@@ -180,7 +180,7 @@ class Evaluator(object):
                 ties+=1
             if hero_rank<villain_rank:
                 hero+=1
-                print(full_board)
+                print(Card.print_pretty_cards(full_board))
                 
         return (hero/num_iters, ties/num_iters, (num_iters-hero-ties)/num_iters)          
         
