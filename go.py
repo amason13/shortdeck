@@ -31,6 +31,18 @@ boat.append(Card.new('Ad'))
 boat.append(Card.new('Kc'))
 boat.append(Card.new('Kd'))
 
+flush = []
+flush.append(Card.new('Ac'))
+flush.append(Card.new('2c'))
+flush.append(Card.new('3c'))
+flush.append(Card.new('Kc'))
+flush.append(Card.new('7c'))
+
 print(FD.evaluate(boat,[]))
+print(FD.evaluate(flush,[]))
+
 print(SD.evaluate(boat,[]))
+print(SD.evaluate(flush,[]))
+
 print(TR.evaluate(boat,[]))
+print(TR.evaluate(flush,[]))
