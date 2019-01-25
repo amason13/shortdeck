@@ -12,9 +12,11 @@ ophand = []
 ophand.append(Card.new('Jh'))
 ophand.append(Card.new('Th'))
 
-FD.equities(myhand,ophand)
+b=[]
 
-SD.equities(myhand,ophand)
+FD.equities(myhand,ophand,b)
 
-TR.equities(myhand,ophand)
+SD.equities(myhand,ophand,b)
+
+TR.equities(myhand,ophand,b)
 
