@@ -22,7 +22,7 @@ print(SD.equities(myhand,ophand,b))
 
 print('******triton******')
 print(TR.equities(myhand,ophand,b))
-
+'''
 test_hand = []
 
 test_hand.append(Card.new('Ac'))
@@ -30,5 +30,5 @@ test_hand.append(Card.new('6c'))
 test_hand.append(Card.new('7c'))
 test_hand.append(Card.new('8c'))
 test_hand.append(Card.new('9c'))
-'''
+
 print(SD.get_rank_class(SD.evaluate(test_hand,[])))
