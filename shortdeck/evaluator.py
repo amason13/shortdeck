@@ -132,7 +132,7 @@ class Evaluator(object):
 
         return minimum
     
-    def equities(self, hero_cards, villain_cards, board, num_iters = 10000):
+    def equities(self, hero_cards, villain_cards, board, num_iters = 100000):
         all_cards = hero_cards + villain_cards + board
         hero = 0
         ties = 0
