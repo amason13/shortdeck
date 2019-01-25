@@ -31,4 +31,6 @@ test_hand.append(Card.new('7c'))
 test_hand.append(Card.new('8c'))
 test_hand.append(Card.new('9c'))
 
+print(FD.evaluate(test_hand,[]))
 print(SD.evaluate(test_hand,[]))
+print(TR.evaluate(test_hand,[]))
