@@ -13,7 +13,7 @@ ophand.append(Card.new('Kh'))
 ophand.append(Card.new('Kd'))
 
 b=[]
-
+'''
 print('******full deck******')
 print(FD.equities(myhand,ophand,b))
 
@@ -30,5 +30,5 @@ test_hand.append(Card.new('6c'))
 test_hand.append(Card.new('7c'))
 test_hand.append(Card.new('8c'))
 test_hand.append(Card.new('9c'))
-
-SD.get_rank_class(SD.evaluate(test_hand,[]))
+'''
+print(SD.get_rank_class(SD.evaluate(test_hand,[])))
