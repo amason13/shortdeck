@@ -39,18 +39,18 @@ print(TR.equities(myhand,ophand,[]))
 '''
 b = []
 boat = []
-boat.append(Card.new('Ac'))
-boat.append(Card.new('As'))
-boat.append(Card.new('Ad'))
-boat.append(Card.new('Kc'))
-boat.append(Card.new('Qd'))
+boat.append(Card.new('Jc'))
+boat.append(Card.new('Ts'))
+boat.append(Card.new('9d'))
+boat.append(Card.new('8c'))
+boat.append(Card.new('7d'))
 
 flush = []
-flush.append(Card.new('2s'))
-flush.append(Card.new('2h'))
-flush.append(Card.new('2c'))
-flush.append(Card.new('3c'))
-flush.append(Card.new('4c'))
+flush.append(Card.new('8s'))
+flush.append(Card.new('8h'))
+flush.append(Card.new('8c'))
+flush.append(Card.new('9c'))
+flush.append(Card.new('Jc'))
 
 print(FD.evaluate(boat,b))
 print(SD.evaluate(boat,b))
