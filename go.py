@@ -14,9 +14,12 @@ ophand.append(Card.new('Th'))
 
 b=[]
 
-FD.equities(myhand,ophand,b)
+print'******full deck******')
+print(FD.equities(myhand,ophand,b))
 
-SD.equities(myhand,ophand,b)
+print'******short deck******')
+print(SD.equities(myhand,ophand,b))
 
-TR.equities(myhand,ophand,b)
+print'******triton******')
+print(TR.equities(myhand,ophand,b))
 
