@@ -52,9 +52,9 @@ class Evaluator(object):
             hr = 1605
         # swap full houses and flushes around
         elif (167 <= hr) and (hr <= 322): 
-            += 1277
+            hr += 1277
         elif (323 <= hr) and (hr <= 1599):
-            -= 156
+            hr -= 156
         else:
             pass
         return hr
