@@ -77,4 +77,4 @@ b.append(Card.new('Qs'))
 
 
 print(SD.equities(p1,p2,b))
-print(TD.equities(p1,p2,b))
+print(TR.equities(p1,p2,b))
