@@ -37,6 +37,7 @@ print(SD.equities(myhand,ophand,[]))
 print('******triton******')
 print(TR.equities(myhand,ophand,[]))
 '''
+b = []
 boat = []
 boat.append(Card.new('Ac'))
 boat.append(Card.new('As'))
@@ -72,7 +73,6 @@ print(TR.evaluate(flush,[]))
 '''
 p1 = []
 p2 = []
-b = []
 
 p1.append(Card.new('8c'))
 p1.append(Card.new('8h'))
