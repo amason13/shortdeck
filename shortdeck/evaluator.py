@@ -14,9 +14,10 @@ class Evaluator(object):
     all calculations are done with bit arithmetic and table lookups. 
     """
 
-    def __init__(self):
+    def __init__(self, game_variant = 'FULL_DECK'):
         
         self.table = LookupTable()
+        self.game_variant = game_variant
         
     def SHORTmap(self,hr):
         if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
@@ -47,7 +48,7 @@ class Evaluator(object):
             pass
         return hr
 
-    def evaluate(self, cards, board, game_variant='FULL_DECK'):
+    def evaluate(self, cards, board):
         """
         This is the function that the user calls to get a hand rank. 
 
@@ -57,12 +58,12 @@ class Evaluator(object):
         all_cards = list(cards) + board
         hand_rank = self._five(all_cards)
         
-        if game_variant == 'FULL_DECK':
+        if self.game_variant == 'FULL_DECK':
             pass
-        elif game_variant == 'SHORT_DECK':
+        elif self.game_variant == 'SHORT_DECK':
             # perform SD rank mapping and replace hand_rank
             self.SHORTmap(hand_rank)
-        elif game_variant == 'TRITON':
+        elif self.game_variant == 'TRITON':
             # PERFORM TRITON rank mapping and replace hand_rank
             self.TRITONmap(hand_rank)            
         else: 
@@ -91,95 +92,27 @@ class Evaluator(object):
             return self.table.unsuited_lookup[prime]
 
     
-    def get_rank_class(self, hr):
-        """
-        Returns the class of hand given the hand hand_rank
-        returned from evaluate. 
-        """
-        if hr >= 0 and hr <= LookupTable.MAX_STRAIGHT_FLUSH:
-            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_STRAIGHT_FLUSH]
-        elif hr <= LookupTable.MAX_FOUR_OF_A_KIND:
-            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_FOUR_OF_A_KIND]
-        elif hr <= LookupTable.MAX_FULL_HOUSE:
-            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_FULL_HOUSE]
-        elif hr <= LookupTable.MAX_FLUSH:
-            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_FLUSH]
-        elif hr <= LookupTable.MAX_STRAIGHT:
-            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_STRAIGHT]
-        elif hr <= LookupTable.MAX_THREE_OF_A_KIND:
-            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_THREE_OF_A_KIND]
-        elif hr <= LookupTable.MAX_TWO_PAIR:
-            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_TWO_PAIR]
-        elif hr <= LookupTable.MAX_PAIR:
-            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_PAIR]
-        elif hr <= LookupTable.MAX_HIGH_CARD:
-            return LookupTable.MAX_TO_RANK_CLASS[LookupTable.MAX_HIGH_CARD]
-        else:
-            raise Exception("Inavlid hand rank, cannot return rank class")
-
-    def class_to_string(self, class_int):
-        """
-        Converts the integer class hand score into a human-readable string.
-        """
-        return LookupTable.RANK_CLASS_TO_STRING[class_int]
-
-    def get_five_card_rank_percentage(self, hand_rank):
-        """
-        Scales the hand rank score to the [0.0, 1.0] range.
-        """
-        return float(hand_rank) / float(LookupTable.MAX_HIGH_CARD)
-
-    def hand_summary(self, board, hands):
-        """
-        Gives a sumamry of the hand with ranks as time proceeds. 
-
-        Requires that the board is in chronological order for the 
-        analysis to make sense.
-        """
-
-        assert len(board) == 5, "Invalid board length"
-        for hand in hands:
-            assert len(hand) == 2, "Inavlid hand length"
-
-        line_length = 10
-        stages = ["FLOP", "TURN", "RIVER"]
-
-        for i in range(len(stages)):
-            line = "=" * line_length
-            print(f"{line} {stages[i]} {line}")
+    def equities(self, hero_cards, villain_cards, board, num_iters = 10000):
+        all_cards = hero_cards + villain_cards + board
+        deck = Deck()
+        for c in all_cards:
+            deck.remove(c)
+        hero = 0
+        ties = 0
+        for i in range(num_iters):
+            deck.reshuffle()
+            full_board = board + deck.draw(5-len(board))
+            hero_rank = self.evaluate(hero_cards,full_board)
+            villain_rank = self.evaluate(villain_cards,full_board)
             
-            best_rank = 7463  # rank one worse than worst hand
-            winners = []
-            for player, hand in enumerate(hands):
+            if hero_rank == villain_rank:
+                ties+=1
+            if hero_rank<villain_rank:
+                hero+=1
+                
+        return (hero/num_iters, ties/num_iters, (num_iters-hero-ties)/num_iters)          
+        
+    
 
-                # evaluate current board position
-                rank = self.evaluate(hand, board[:(i + 3)])
-                rank_class = self.get_rank_class(rank)
-                class_string = self.class_to_string(rank_class)
-                percentage = 1.0 - self.get_five_card_rank_percentage(rank)  # higher better here
-                print(f"Player {player + 1} hand = {class_string}, percentage rank among all hands = {percentage}")
 
-                # detect winner
-                if rank == best_rank:
-                    winners.append(player)
-                    best_rank = rank
-                elif rank < best_rank:
-                    winners = [player]
-                    best_rank = rank
-
-            # if we're not on the river
-            if i != stages.index("RIVER"):
-                if len(winners) == 1:
-                    print(f"Player {winners[0] + 1} hand is currently winning.\n")
-                else:
-                    print(f"Players {[x + 1 for x in winners]} are tied for the lead.\n")
-
-            # otherwise on all other streets
-            else:
-                hand_result = self.class_to_string(self.get_rank_class(self.evaluate(hands[winners[0]], board)))
-                print()
-                print(f"{line} HAND OVER {line}")
-                if len(winners) == 1:
-                    print(f"Player {winners[0] + 1} is the winner with a {hand_result}\n")
-                else:
-                    print(f"Players {winners} tied for the win with a {hand_result}\n")
+    
