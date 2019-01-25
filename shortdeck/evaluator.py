@@ -162,7 +162,7 @@ class Evaluator(object):
         else:
             raise Exception("Inavlid hand rank, cannot return rank class")
             
-    def equities(self, hero_cards, villain_cards, board, num_iters = 100000):
+    def equities(self, hero_cards, villain_cards, board, num_iters = 1000):
         all_cards = hero_cards + villain_cards + board
         hero = 0
         ties = 0
@@ -180,6 +180,7 @@ class Evaluator(object):
                 ties+=1
             if hero_rank<villain_rank:
                 hero+=1
+                print(full_board)
                 
         return (hero/num_iters, ties/num_iters, (num_iters-hero-ties)/num_iters)          
         
