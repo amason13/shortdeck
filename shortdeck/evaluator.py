@@ -95,8 +95,7 @@ class Evaluator(object):
     def equities(self, hero_cards, villain_cards, board, num_iters = 10000):
         all_cards = hero_cards + villain_cards + board
         deck = Deck()
-        for c in all_cards:
-            deck.remove(c)
+        deck.remove(all_cards)
         hero = 0
         ties = 0
         for i in range(num_iters):
