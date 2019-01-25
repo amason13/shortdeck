@@ -36,21 +36,31 @@ print(SD.equities(myhand,ophand,[]))
 
 print('******triton******')
 print(TR.equities(myhand,ophand,[]))
-
+'''
 boat = []
 boat.append(Card.new('Ac'))
 boat.append(Card.new('As'))
 boat.append(Card.new('Ad'))
 boat.append(Card.new('Kc'))
-boat.append(Card.new('Kd'))
+boat.append(Card.new('Qd'))
 
 flush = []
-flush.append(Card.new('Ac'))
+flush.append(Card.new('2s'))
+flush.append(Card.new('2h'))
 flush.append(Card.new('2c'))
 flush.append(Card.new('3c'))
-flush.append(Card.new('Kc'))
-flush.append(Card.new('7c'))
+flush.append(Card.new('4c'))
 
+print(FD.evaluate(boat,b))
+print(SD.evaluate(boat,b))
+print(TR.evaluate(boat,b))
+
+print(FD.evaluate(flush,b))
+print(SD.evaluate(flush,b))
+print(TR.evaluate(flush,b))
+
+
+'''
 print(FD.evaluate(boat,[]))
 print(FD.evaluate(flush,[]))
 
