@@ -26,7 +26,7 @@ class Evaluator(object):
         }
 
         
-    def SHORTmap(hr):
+    def SHORTmap(self, hr):
         if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
             HR = 6
         # swap full houses and flushes around
@@ -43,7 +43,7 @@ class Evaluator(object):
             HR = hr
         return HR
 
-    def TRITONmap(hr):
+    def TRITONmap(self, hr):
         if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
             HR = 6
         # swap full houses and flushes around
