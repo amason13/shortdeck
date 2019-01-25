@@ -92,7 +92,7 @@ class Evaluator(object):
             return self.table.unsuited_lookup[prime]
 
     
-    def equities(self, hero_cards, villain_cards, board, num_iters = 10000):
+    def equities(self, hero_cards, villain_cards, board, num_iters = 10):
         all_cards = hero_cards + villain_cards + board
         deck = Deck()
         deck.remove(all_cards)
@@ -101,6 +101,7 @@ class Evaluator(object):
         for i in range(num_iters):
             deck.reshuffle()
             full_board = board + deck.draw(5-len(board))
+            print(Card.print_pretty_cards(full_board))
             hero_rank = self.evaluate(hero_cards,full_board)
             villain_rank = self.evaluate(villain_cards,full_board)
             
