@@ -21,9 +21,6 @@ class Deck:
         self.dead_cards=[]
         
     def reshuffle(self):
-        self.cards = Deck.GetFullDeck()
-        for card in self.dead_cards:
-            self.cards.remove(card)
         rshuffle(self.cards)
 
     def draw(self, n=1):
@@ -35,13 +32,14 @@ class Deck:
         cards = []
         for i in range(n):
             cards.append(self.draw())
-
         return cards
-    
         for card in cards:
             self.dead_cards.append(card)
                 
-            
+    def remove(self, cards):
+        for c in cards:
+            self.cards.remove(c)
+            self.dead_cards.append(c)
 
     def __str__(self):
         return Card.print_pretty_cards(self.cards)
