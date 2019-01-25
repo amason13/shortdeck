@@ -2,6 +2,7 @@ import itertools
 from .card import Card
 from .deck import Deck
 from .lookup import LookupTable
+from copy import deepcopy 
 
 class Evaluator(object):
     """
@@ -134,11 +135,11 @@ class Evaluator(object):
     
     def equities(self, hero_cards, villain_cards, board, num_iters = 10):
         all_cards = hero_cards + villain_cards + board
-        deck = Deck()
-        deck.remove(all_cards)
         hero = 0
         ties = 0
         for i in range(num_iters):
+            deck = Deck()
+            deck.remove(all_cards)
             deck.reshuffle()
             full_board = board + deck.draw(5-len(board))
             print(Card.print_pretty_cards(full_board))
