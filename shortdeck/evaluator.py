@@ -183,7 +183,7 @@ class Evaluator(object):
             elif hero_rank<villain_rank:
                 hero+=1
                 
-            elif villain_rank<hero_rank 
+            elif villain_rank<hero_rank: 
                 vill+=1
                 
         return (hero/num_iters, ties/num_iters, vill/num_iters)          
