@@ -11,7 +11,7 @@ ophand.append(Card.new('Th'))
 
 evaluator.evaluate(myhand,ophand)
 
-evaluator.evaluate(myhand,ophand,)
+evaluator.evaluate(myhand,ophand,game_variant = SHORT_DECK)
 
-evaluator.evaluate(myhand,ophand,)
+evaluator.evaluate(myhand,ophand,game_variant = TRITON)
 
