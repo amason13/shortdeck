@@ -1,4 +1,4 @@
-from treys import Card, Evaluator, Deck
+from shortdeck import Card, Evaluator, Deck
 
 FD = Evaluator()
 SD = Evaluator(game_variant='SHORT_DECK')
