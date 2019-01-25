@@ -19,6 +19,14 @@ class Evaluator(object):
         self.table = LookupTable()
         self.game_variant = game_variant
         
+        self.hand_size_map = {
+            3: self._three,
+            5: self._five,
+            6: self._six,
+            7: self._seven
+        }
+
+        
     def SHORTmap(self,hr):
         if hr == 747: #A6789 of a suit becomes a straight flush of rank 56789 suited
             hr = 6
@@ -56,7 +64,7 @@ class Evaluator(object):
         because that's cycles!
         """
         all_cards = list(cards) + board
-        hand_rank = self._five(all_cards)
+        hand_rank = self.hand_size_map[len(all_cards)](all_cards)
         
         if self.game_variant == 'FULL_DECK':
             pass
@@ -91,6 +99,39 @@ class Evaluator(object):
             prime = Card.prime_product_from_hand(cards)
             return self.table.unsuited_lookup[prime]
 
+    def _six(self, cards):
+        """
+        Performs five_card_eval() on all (6 choose 5) = 6 subsets
+        of 5 cards in the set of 6 to determine the best ranking, 
+        and returns this ranking.
+        """
+        minimum = LookupTable.MAX_HIGH_CARD
+
+        all5cardcombobs = itertools.combinations(cards, 5)
+        for combo in all5cardcombobs:
+
+            score = self._five(combo)
+            if score < minimum:
+                minimum = score
+
+        return minimum
+
+    def _seven(self, cards):
+        """
+        Performs five_card_eval() on all (7 choose 5) = 21 subsets
+        of 5 cards in the set of 7 to determine the best ranking, 
+        and returns this ranking.
+        """
+        minimum = LookupTable.MAX_HIGH_CARD
+
+        all5cardcombobs = itertools.combinations(cards, 5)
+        for combo in all5cardcombobs:
+            
+            score = self._five(combo)
+            if score < minimum:
+                minimum = score
+
+        return minimum
     
     def equities(self, hero_cards, villain_cards, board, num_iters = 10):
         all_cards = hero_cards + villain_cards + board
