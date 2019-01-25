@@ -20,7 +20,6 @@ class Evaluator(object):
         self.game_variant = game_variant
         
         self.hand_size_map = {
-            3: self._three,
             5: self._five,
             6: self._six,
             7: self._seven
