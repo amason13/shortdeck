@@ -29,11 +29,6 @@ class Deck:
         rshuffle(self.cards)
 
     def draw(self, n=1):
-        if n == 1:
-            card = self.cards.pop(0)
-            self.dead_cards.append(card)
-            return list(card)
-
         cards = []
         for i in range(n):
             cards.append(self.draw())
