@@ -13,7 +13,7 @@ ophand.append(Card.new('Kh'))
 ophand.append(Card.new('Kd'))
 
 b=[]
-
+'''
 print('******full deck******')
 print(FD.equities(myhand,ophand,b))
 
@@ -22,7 +22,7 @@ print(SD.equities(myhand,ophand,b))
 
 print('******triton******')
 print(TR.equities(myhand,ophand,b))
-
+'''
 
 boat = []
 boat.append(Card.new('Ac'))
@@ -31,6 +31,6 @@ boat.append(Card.new('Ad'))
 boat.append(Card.new('Kc'))
 boat.append(Card.new('Kd'))
 
-FD.evaluate(board,[])
-SD.evaluate(board,[])
-TR.evaluate(board,[])
+FD.evaluate(boat,[])
+SD.evaluate(boat,[])
+TR.evaluate(boat,[])
