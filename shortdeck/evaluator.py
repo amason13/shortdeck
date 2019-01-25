@@ -178,7 +178,6 @@ class Evaluator(object):
 
             if hero_rank == villain_rank:
                 ties+=1
-                print(Card.print_pretty_cards(full_board))
 
             if hero_rank<villain_rank:
                 hero+=1
