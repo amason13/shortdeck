@@ -67,7 +67,7 @@ b = []
 p1.append(Card.new('8c'))
 p1.append(Card.new('8h'))
 
-p2.append(Card.new('9c'))
+p2.append(Card.new('9d'))
 p2.append(Card.new('Jh'))
 
 b.append(Card.new('8d'))
